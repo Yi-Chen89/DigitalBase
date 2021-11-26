@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DigitalBase
+{% endblock %}
+
+{% block main %}
+
+    <ol>
+        {% for app in apps %}
+            <li>
+                <a href="#">{{ app|capfirst }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+
+{% endblock %}
