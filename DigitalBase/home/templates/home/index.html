@@ -6,12 +6,18 @@
 
 {% block main %}
 
-    <ol>
+    <div class="index-page-container">
         {% for app in apps %}
-            <li>
-                <a href="#">{{ app|capfirst }}</a>
-            </li>
+            <a href="#" class="app-block-link">
+                <div class="app-block">
+                    <div class="app-block-text">
+                        {{ app|capfirst }}
+                        <br>
+                        Base
+                    </div>
+                </div>
+            </a>
         {% endfor %}
-    </ol>
+    </div>
 
 {% endblock %}

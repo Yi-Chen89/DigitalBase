@@ -1,0 +1,49 @@
+/* for index page */
+
+.index-page-container {
+    margin: 180px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.app-block-link {
+    display: block;
+
+    margin: 50px;
+
+    text-decoration: none;
+}
+
+.app-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 180px;
+    height: 180px;
+    border-radius: 6px;
+
+    background-color: #dae0e5;
+    color: #495057;
+
+    box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.app-block:hover {
+    background-color: #495057;
+    color: #dae0e5;
+    transition: 0.3s;
+}
+
+.app-block-text {
+    display: block;
+    line-height: 150%;
+
+    margin-top: 0;
+    margin-bottom: 0;
+
+    font-weight: bold;
+    font-size: 22px;
+    text-align:center;
+}
