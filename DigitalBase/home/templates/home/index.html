@@ -1,23 +1,5 @@
-{% extends "layout.html" %}
+{% extends "index-layout.html" %}
 
 {% block title %}
     DigitalBase
-{% endblock %}
-
-{% block main %}
-
-    <div class="index-page-container">
-        {% for app in apps %}
-            <a href="#" class="app-block-link">
-                <div class="app-block">
-                    <div class="app-block-text">
-                        {{ app|capfirst }}
-                        <br>
-                        Base
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-    </div>
-
 {% endblock %}

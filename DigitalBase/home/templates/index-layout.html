@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <div class="index-page-container">
+        {% for block in blocks %}
+            <a href="#" class="app-block-link">
+                <div class="app-block">
+                    <div class="app-block-text">
+                        {{ block|capfirst }}
+                        {% if add_base %}
+                            <br>
+                            Base
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

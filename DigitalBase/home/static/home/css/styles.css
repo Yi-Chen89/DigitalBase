@@ -47,3 +47,29 @@
     font-size: 22px;
     text-align:center;
 }
+
+
+
+/* for index page */
+
+.panel-page-container {
+    width: 100%;
+    min-height: 800px;
+
+    padding: 10px;
+}
+
+/* for two panel page */
+
+.half-panel-container {
+    width: 48%;
+    height: 100%;
+
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 12px;
+    border-color: #dae0e5;
+
+    margin: 10px;
+    padding: 10px;
+}

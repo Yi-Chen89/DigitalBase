@@ -9,8 +9,8 @@ APPS = ['project',
         'tool',
         'data']
 
-# APPS = ['project',]
 
 def index(request):
-    context = {'apps': APPS}
+    context = {'blocks': APPS,
+               'add_base': True}
     return render(request, 'home\index.html', context)
