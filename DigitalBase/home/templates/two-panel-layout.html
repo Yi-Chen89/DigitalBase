@@ -4,10 +4,12 @@
 
     <div class="panel-page-container">
         <div class="half-panel-container" style="float: left">
-            left
+            {% block left-panel %}
+            {% endblock %}
         </div>
         <div class="half-panel-container" style="float: right">
-            right
+            {% block right-panel %}
+            {% endblock %}
         </div>
     </div>
 
