@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
-from django.shortcuts import render
+from project.models import Project
 
 
 def index(request):
-    return render(request, 'project\index.html')
+    project_list = Project.objects.all()
+
+    context = {'project_list': project_list}
+
+    return render(request, 'project\index.html', context)

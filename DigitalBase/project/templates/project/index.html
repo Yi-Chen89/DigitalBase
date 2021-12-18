@@ -6,14 +6,26 @@
 
 {% block left-panel %}
     <div>
-        <h1>Left
+        <h1>Search Bar</h1>
     </div>
-    <div>
-        description
+
+    <div class="bar-block-container">
+        {% if project_list %}
+            {% for project in project_list %}
+                <a href="#" style="text-decoration: none">
+                    <div class="bar-block">
+                        {{ project.job_number }}   {{ project.name|upper }}
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
     </div>
-    <div style="position:absolute; bottom:0; width:100%;">
-        <button type="button" class="btn btn-dark">Add</button>
-    </div>
+
+    <a href="#" style="text-decoration: none">
+        <div class="bottom-button-fullwidth">
+            Add Project
+        </div>
+    </a>
 {% endblock %}
 
 {% block right-panel %}
