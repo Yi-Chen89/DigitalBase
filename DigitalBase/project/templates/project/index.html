@@ -12,7 +12,12 @@
     <div class="bar-block-container">
         {% if project_list %}
             {% for project in project_list %}
-                <a href="#" style="text-decoration: none">
+                {% comment %} for AJAX {% endcomment %}
+                {% comment %} <a href="#"
+                    style="text-decoration: none"
+                    onclick="projectInfo('{% url 'project:get_project_info' project.id %}, {{ project.id }} ); return false;"
+                    id="project_{{ project.id }}"> {% endcomment %}
+                <a href="{% url 'project:get_project_info' project.id %}" style="text-decoration: none">
                     <div class="bar-block">
                         {{ project.job_number }}   {{ project.name|upper }}
                     </div>
@@ -20,6 +25,16 @@
             {% endfor %}
         {% endif %}
     </div>
+
+
+    {% comment %} for AJAX {% endcomment %}
+    {% comment %} <script>
+        function projectInfo(url, project_id) {
+            function(info)
+            $(".temp").append('<p>'+'</p>');
+        }
+    </script> {% endcomment %}
+
 
     <a href="#" style="text-decoration: none">
         <div class="bottom-button-fullwidth">
@@ -29,5 +44,13 @@
 {% endblock %}
 
 {% block right-panel %}
-    right
+    {% if project_info %}
+        <div>
+            <h1>{{ project_info.display_name }}</h1>
+        </div>
+
+        <div>
+            {{ project_info.job_number }}: {{ project_info.name|upper }}
+        </div>
+    {% endif %}
 {% endblock %}
