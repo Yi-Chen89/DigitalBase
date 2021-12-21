@@ -44,22 +44,44 @@
 {% endblock %}
 
 {% block right-panel %}
-    {% if project_info %}
-        <div>
+    <div>
+        {% if project_info %}
             <h1>{{ project_info.display_name }}</h1>
-        </div>
+        {% else %}
+            <h1>Project Home</h1>
+        {% endif %}
+    </div>
 
-        <div>
-            {{ project_info.job_number }}: {{ project_info.name|upper }}
-        </div>
 
-        <a href="{% url 'project:index' %}" style="text-decoration: none">
-            <div class="bottom-button-fullwidth">
-                Project Home
+    <div>
+        {% if project_info %}
+            <div>
+                {{ project_info.job_number }}: {{ project_info.name|upper }}
             </div>
-        </a>
-    {% else %}
-        <h1>Project Home</h1>
-        <p>{{ project_list.count }} projects are stored in the database.</p>
-    {% endif %}
+
+            <div>
+                {% if project_scope %}
+                    <h3>Scope</h3>
+                        <ul>
+                            {% for scope in project_scope %}
+                                <li>{{ scope.name }} ({{ scope.id }})</li>
+                            {% endfor %}
+                        </ul>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>{{ project_list.count }} projects are stored in the database.</p>
+        {% endif %}
+    </div>
+
+
+    <div>
+        {% if project_info %}
+            <a href="{% url 'project:index' %}" style="text-decoration: none">
+                <div class="bottom-button-fullwidth">
+                    Project Home
+                </div>
+            </a>
+        {% endif %}
+    </div>
 {% endblock %}

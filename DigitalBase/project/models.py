@@ -1,7 +1,5 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
-from django.db.models.fields import IntegerField
-from django.db.models.fields.related import ForeignKey
 
 
 class Project(models.Model):
@@ -24,13 +22,17 @@ class Scope(models.Model):
     name = models.CharField(
         max_length = 120
     )
-    description = models.TextField()
-    parent_id = ForeignKey(
-        "self",
-        on_delete = models.CASCADE,
-        null = True
+    description = models.TextField(
+        blank = True
     )
-    project_id = ForeignKey(
+    parent_scope = models.ForeignKey(
+        'self',
+        on_delete = models.CASCADE,
+        default = None,
+        null = True,
+        blank = True
+    )
+    project = models.ForeignKey(
         Project,
         on_delete = models.CASCADE
     )
