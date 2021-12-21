@@ -52,5 +52,14 @@
         <div>
             {{ project_info.job_number }}: {{ project_info.name|upper }}
         </div>
+
+        <a href="{% url 'project:index' %}" style="text-decoration: none">
+            <div class="bottom-button-fullwidth">
+                Project Home
+            </div>
+        </a>
+    {% else %}
+        <h1>Project Home</h1>
+        <p>{{ project_list.count }} projects are stored in the database.</p>
     {% endif %}
 {% endblock %}
