@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # All apps
-APPS = ['project']
+APPS = ['project',
+        'calc']
 
 FUTURE_APPS = ['project',
                'task',
@@ -13,7 +14,7 @@ FUTURE_APPS = ['project',
 
 
 def index(request):
-    context = {'blocks': FUTURE_APPS,
+    context = {'blocks': APPS,
                'apps': APPS,
                'add_base': True}
     return render(request, 'home\index.html', context)
