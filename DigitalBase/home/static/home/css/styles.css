@@ -1,10 +1,26 @@
+/* for base page layout */
+:root {
+    --header-height: 60px;
+    --footer-height: 60px;
+}
+
+header {
+    height: var(--header-height);
+}
+  
+.main {
+    height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+footer {
+    height: var(--footer-height);
+}
+
+
 /* for index page */
 
 .index-page-container {
-    margin: 180px;
-
-    display: flex;
-    flex-wrap: wrap;
+    padding: 180px 180px 0px 180px;
 }
 
 .app-block-link {
@@ -50,30 +66,27 @@
 
 
 
-/* for index page */
+/* for panel page */
 
 .panel-page-container {
-    width: 100%;
-    height: calc(100vh - 112px);
-
-    padding: 10px;
+    /* width: 100%;
+    height: calc(100vh - 112px); */
 }
 
 /* for two panel page */
 
 .half-panel-container {
-    width: calc(50% - 20px);
-    height: calc(100vh - 152px);
+    /* height: calc(100vh - 152px); */
 
     border-style: solid;
     border-width: 10px;
     border-radius: 12px;
     border-color: #dae0e5;
 
-    margin: 10px;
-    padding: 10px;
+    /* margin: 10px;
+    padding: 10px; */
 
-    position:relative;
+    /* position:relative; */
 }
 
 
@@ -83,7 +96,7 @@
 
 
 
-
+/* 
 .bar-block-container {
     width: 100%;
     height: calc(inherit - 100px);
@@ -143,4 +156,4 @@
     background-color: #495057;
     color: #dae0e5;
     transition: 0.3s;
-}
+} */

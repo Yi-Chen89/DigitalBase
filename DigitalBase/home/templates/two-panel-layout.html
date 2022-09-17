@@ -2,14 +2,18 @@
 
 {% block main %}
 
-    <div class="panel-page-container">
-        <div class="half-panel-container" style="float: left">
-            {% block left-panel %}
-            {% endblock %}
+    <div class="panel-page-container row">
+        <div class="col-6">
+            <div class="half-panel-container m-1 p-1">
+                {% block left-panel %}
+                {% endblock %}
+            </div>
         </div>
-        <div class="half-panel-container" style="float: right">
-            {% block right-panel %}
-            {% endblock %}
+        <div class="col-6">
+            <div class="half-panel-container m-1 p-1">
+                {% block right-panel %}
+                {% endblock %}
+            </div>
         </div>
     </div>
 
