@@ -23,6 +23,8 @@
 
     --panel-title-block-margin: 10px;
 
+    --panel-content-block-margin: 10px;
+
     /* button style */
     --button-block-height: 50px;
 
@@ -101,21 +103,6 @@ footer {
 /* for panel page */
 
 .panel-page-container {
-
-}
-
-.panel-title-block {
-    height: var(--panel-title-height);
-
-    /* style border */
-    border-bottom: var(--panel-title-border-style);
-    border-width: var(--panel-title-border-width);
-    border-color: var(--panel-title-border-color);
-    
-    /* margin */
-    margin-left: var(--panel-title-block-margin);
-    margin-right: var(--panel-title-block-margin);
-
 
 }
 
@@ -202,21 +189,49 @@ footer {
 } */
 
 
-.panel-content-block {
-    height: calc(100% - var(--panel-title-height) - var(--button-block-height));
+.panel-title-block {
+    height: var(--panel-title-height);
+
+    /* style border */
+    border-bottom: var(--panel-title-border-style);
+    border-width: var(--panel-title-border-width);
+    border-color: var(--panel-title-border-color);
+    
+    /* margin */
+    margin-left: var(--panel-title-block-margin);
+    margin-right: var(--panel-title-block-margin);
+    margin-bottom: var(--panel-title-block-margin);
+}
+
+
+.panel-content-block-full {
+    height: 100%;
 
     /* margin */
-    margin-left: var(--button-block-margin);
-    margin-right: var(--button-block-margin);
+    margin-left: var(--panel-content-block-margin);
+    margin-right: var(--panel-content-block-margin);
 }
+
+.panel-content-block-with-title {
+    height: calc(100% - var(--panel-title-height) - var(--panel-title-block-margin));
+
+    /* margin */
+    margin-left: var(--panel-content-block-margin);
+    margin-right: var(--panel-content-block-margin);
+}
+
+.panel-content-block-with-title-button-1 {
+    height: calc(100% - var(--panel-title-height) - var(--panel-title-block-margin)*2 - var(--button-block-height));
+
+    /* margin */
+    margin-left: var(--panel-content-block-margin);
+    margin-right: var(--panel-content-block-margin);
+    margin-bottom: var(--panel-content-block-margin);
+}
+
 
 .panel-button-block-1 {
     height: var(--button-block-height);
-
-    /* border-radius: 6px;
-
-    background-color: var(--button-block-background-color);
-    color: var(--button-text-color); */
 
     /* margin */
     margin-left: var(--button-block-margin);
