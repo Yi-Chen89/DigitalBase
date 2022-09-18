@@ -1,15 +1,47 @@
-/* for base page layout */
+/* define variable */
 :root {
+    /* base layout */
     --header-height: 60px;
     --footer-height: 60px;
+    --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+    /* panel style */
+    --panel-color: #8f8f8f;
+
+    --panel-container-border-style: solid;
+    --panel-container-border-width: 10px;
+    --panel-container-border-color: var(--panel-color);
+    --panel-container-border-radius: 16px;
+
+    --panel-container-padding: 10px;
+
+    --panel-title-height: 66px;
+
+    --panel-title-border-style: solid;
+    --panel-title-border-width: 6px;
+    --panel-title-border-color: var(--panel-color);
+
+    --panel-title-block-margin: 10px;
+
+    /* button style */
+    --button-block-height: 50px;
+
+    --button-block-radius: 10px;
+
+    --button-block-background-color: var(--panel-color);
+    --button-block-text-color: #dae0e5;
+
+    --button-block-margin: 10px;
 }
 
+
+/* for base page layout */
 header {
     height: var(--header-height);
 }
   
-.main {
-    height: calc(100vh - var(--header-height) - var(--footer-height));
+main {
+    height: var(--main-height);
 }
 
 footer {
@@ -69,24 +101,35 @@ footer {
 /* for panel page */
 
 .panel-page-container {
-    /* width: 100%;
-    height: calc(100vh - 112px); */
+
+}
+
+.panel-title-block {
+    height: var(--panel-title-height);
+
+    /* style border */
+    border-bottom: var(--panel-title-border-style);
+    border-width: var(--panel-title-border-width);
+    border-color: var(--panel-title-border-color);
+    
+    /* margin */
+    margin-left: var(--panel-title-block-margin);
+    margin-right: var(--panel-title-block-margin);
+
+
 }
 
 /* for two panel page */
 
 .half-panel-container {
-    /* height: calc(100vh - 152px); */
+    /* style border */
+    border-style: var(--panel-container-border-style);
+    border-width: var(--panel-container-border-width);
+    border-color: var(--panel-container-border-color);
+    border-radius: var(--panel-container-border-radius);
 
-    border-style: solid;
-    border-width: 10px;
-    border-radius: 12px;
-    border-color: #dae0e5;
-
-    /* margin: 10px;
-    padding: 10px; */
-
-    /* position:relative; */
+    /* padding */
+    padding: var(--panel-container-padding);
 }
 
 
@@ -157,3 +200,25 @@ footer {
     color: #dae0e5;
     transition: 0.3s;
 } */
+
+
+.panel-content-block {
+    height: calc(100% - var(--panel-title-height) - var(--button-block-height));
+
+    /* margin */
+    margin-left: var(--button-block-margin);
+    margin-right: var(--button-block-margin);
+}
+
+.panel-button-block-1 {
+    height: var(--button-block-height);
+
+    /* border-radius: 6px;
+
+    background-color: var(--button-block-background-color);
+    color: var(--button-text-color); */
+
+    /* margin */
+    margin-left: var(--button-block-margin);
+    margin-right: var(--button-block-margin);
+}
