@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from calc.models import SteelSectionType, SteelSection
+
+admin.site.register(SteelSectionType)
+admin.site.register(SteelSection)
