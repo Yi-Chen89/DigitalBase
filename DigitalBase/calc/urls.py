@@ -4,9 +4,6 @@ from . import views
 
 app_name = 'calc'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('test/', views.test, name='test'),
-
     path('steelsection/', views.getAllSteelSection),
     path('steelsection/<int:id>', views.getSteelSection),
 ]
