@@ -1,9 +1,35 @@
 from django.db import models
 
 
+class SteelType(models.Model):
+    type = models.CharField(
+        max_length = 50
+    )
+
+    def __str__(self):
+        return self.type
+
+
+class SteelGrade(models.Model):
+    name = models.CharField(
+        max_length = 16)
+    type = models.ForeignKey(
+        SteelType,
+        on_delete = models.CASCADE)
+    F_y = models.IntegerField()
+    F_u = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
+
+
 class SteelSectionType(models.Model):
     type = models.CharField(
         max_length = 4
+    )
+    preferred_steel = models.ForeignKey(
+        SteelGrade,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
