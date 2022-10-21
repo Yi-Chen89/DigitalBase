@@ -2,12 +2,12 @@ from django.db import models
 
 
 class SteelType(models.Model):
-    type = models.CharField(
+    name = models.CharField(
         max_length = 50
     )
 
     def __str__(self):
-        return self.type
+        return self.name
 
 
 class SteelGrade(models.Model):
@@ -24,7 +24,7 @@ class SteelGrade(models.Model):
 
 
 class SteelSectionType(models.Model):
-    type = models.CharField(
+    name = models.CharField(
         max_length = 4
     )
     preferred_steel = models.ForeignKey(
@@ -33,7 +33,7 @@ class SteelSectionType(models.Model):
     )
 
     def __str__(self):
-        return self.type
+        return self.name
     
 
 class SteelSection(models.Model):
