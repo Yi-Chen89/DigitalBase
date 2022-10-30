@@ -8,4 +8,6 @@ urlpatterns = [
     path('steelgrade/<int:id>', views.getSteelGrade),
     path('steelsections/', views.getAllSteelSections),
     path('steelsection/<int:id>', views.getSteelSection),
+
+    path('steelcalc', views.steelCalc)
 ]
