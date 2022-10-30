@@ -3,10 +3,18 @@ from rest_framework import serializers
 from calc.models import SteelType, SteelGrade, SteelSectionType, SteelSection
 
 
+
 class SteelTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SteelType
-        fields = '__all__' 
+        fields = '__all__'
+
+
+class AllSteelGradesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SteelGrade
+        fields = ['id',
+                  'name']
 
 
 class SteelGradeSerializer(serializers.ModelSerializer):
@@ -14,7 +22,7 @@ class SteelGradeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SteelGrade
-        fields = '__all__' 
+        fields = '__all__'
 
 
 class SteelSectionTypeSerializer(serializers.ModelSerializer):
@@ -22,10 +30,10 @@ class SteelSectionTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SteelSectionType
-        fields = '__all__' 
+        fields = '__all__'
 
 
-class AllSteelSectionSerializer(serializers.ModelSerializer):
+class AllSteelSectionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SteelSection
         fields = ['id',
