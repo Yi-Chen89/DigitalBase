@@ -5,6 +5,8 @@ from rest_framework.parsers import JSONParser
 from calc.models import SteelGrade, SteelSection
 from .serializers import SteelTypeSerializer, AllSteelGradesSerializer, SteelGradeSerializer, SteelSectionTypeSerializer, AllSteelSectionsSerializer, SteelSectionSerializer
 
+from utils.steel_calcs import tension_yield, flexure_yielding, shear_web_no_tensionfield
+
 
 
 @api_view(['GET'])
@@ -63,25 +65,24 @@ def steelCalc(request):
     }
 
     if tensionCheck:
-        phi_t = 0.9
-        P_n = F_y * A_g
-        result['tension'] = phi_t * P_n
+        result['tension'] = tension_yield(F_y=F_y, A_g=A_g)
     
     if compressionCheck:
         phi_c = 0.9
         result['compression'] = 1
 
     if flexureCheck:
-        phi_b = 0.9
-        result['flexure'] = 2
+        Z_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('Z_x', flat=True)[0])
+        result['flexure'] = flexure_yielding(F_y=F_y, Z_x=Z_x) / 12
     
     if shearCheck:
-        phi_v = 0.9
-        result['shear'] = 3
+        d = float(SteelSection.objects.filter(id=steelSectionId).values_list('d', flat=True)[0])
+        t_w = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_w', flat=True)[0])
+        result['shear'] = shear_web_no_tensionfield(F_y=F_y, d=d, t_w=t_w)
 
     if torsionCheck:
         phi_T = 0.9
-        result['torsion'] = 4
+        result['torsion'] = 1
 
 
     return Response(result)
