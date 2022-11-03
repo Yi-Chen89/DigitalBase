@@ -1,4 +1,8 @@
+import math
+
+
 # AISC 360-16 Chapter D -----------------------------------------------------------------------
+# DESIGN OF MEMBERS FOR TENSION ---------------------------------------------------------------
 def tension_yield(F_y, A_g):
     # AISC 360-16 Chapter D D2 (a)
     phi_t = 0.9
@@ -24,7 +28,20 @@ def tension(F_y, A_g, F_u, A_e):
 
 
 # AISC 360-16 Chapter E -----------------------------------------------------------------------
+# DESIGN OF MEMBERS FOR COMPRESSION -----------------------------------------------------------
+def compression_FB_nonslender(E, F_y, A_g, r, L_c):
+    # E3 FLEXURAL BUCKLING OF MEMBERS WITHOUT SLENDER ELEMENTS
+    phi_c = 0.9
 
+    F_e = (math.pi**2 * E) / (L_c / r)**2
+    if F_y / F_e <= 2.25:
+        F_cr = 0.658**(F_y/F_e) * F_y
+    else:
+        F_cr = 0.877 * F_e
+
+    P_n = F_cr * A_g
+
+    return phi_c * P_n
 
 
 # AISC 360-16 Chapter F -----------------------------------------------------------------------

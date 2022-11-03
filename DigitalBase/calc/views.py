@@ -5,7 +5,7 @@ from rest_framework.parsers import JSONParser
 from calc.models import SteelGrade, SteelSection
 from .serializers import SteelTypeSerializer, AllSteelGradesSerializer, SteelGradeSerializer, SteelSectionTypeSerializer, AllSteelSectionsSerializer, SteelSectionSerializer
 
-from utils.steel_calcs import tension_yield, flexure_yielding, shear_web_no_tensionfield
+from utils.steel_calcs import tension_yield, compression_FB_nonslender, flexure_yielding, shear_web_no_tensionfield
 
 
 
@@ -50,6 +50,7 @@ def steelCalc(request):
 
     steelSectionId = inputData['steelSection']['steelSectionId']
     steelGradeId = inputData['steelSection']['steelGradeId']
+    length = inputData['steelSection']['length']
 
     F_y = SteelGrade.objects.filter(id=steelGradeId).values_list('F_y', flat=True)[0]
     F_u = SteelGrade.objects.filter(id=steelGradeId).values_list('F_u', flat=True)[0]
@@ -68,8 +69,10 @@ def steelCalc(request):
         result['tension'] = tension_yield(F_y=F_y, A_g=A_g)
     
     if compressionCheck:
-        phi_c = 0.9
-        result['compression'] = 1
+        E = SteelGrade.objects.filter(id=steelGradeId).values_list('E', flat=True)[0]
+        r = float(SteelSection.objects.filter(id=steelSectionId).values_list('r_y', flat=True)[0])
+        L_c = length * 12
+        result['compression'] = compression_FB_nonslender(E=E, F_y=F_y, A_g=A_g, r=r, L_c=L_c)
 
     if flexureCheck:
         Z_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('Z_x', flat=True)[0])

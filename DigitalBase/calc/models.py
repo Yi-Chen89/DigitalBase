@@ -18,6 +18,7 @@ class SteelGrade(models.Model):
         on_delete = models.CASCADE)
     F_y = models.IntegerField()
     F_u = models.IntegerField()
+    E = models.IntegerField()
     
     def __str__(self):
         return self.name
