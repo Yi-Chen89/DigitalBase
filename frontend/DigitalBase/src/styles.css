@@ -28,6 +28,30 @@
   --panel-title-block-margin: 10px;
 
   --panel-content-block-margin: 10px;
+
+  /* button style */
+  --button-block-height: 50px;
+
+  --button-block-radius: 10px;
+
+  --button-block-background-color: var(--panel-color);
+  --button-block-text-color: #dae0e5;
+
+  --button-block-margin: 10px;
+
+  /* input box style */
+  --input-box-border-color: var(--panel-color);
+
+  /* accordion style */
+  --accordion-header-background-color: rgba(143, 143, 143, 0.2);
+  --accordion-header-text-color: black;
+
+  /* check style */
+  --check-background-color: var(--panel-color);
+  --check-border-color: var(--panel-color);
+
+  /* select style */
+  --select-border-color: var(--panel-color);
 }
 
 
@@ -93,8 +117,8 @@ footer {
 }
 
 
-/* for panel page layout */
-.panel-page-container {
+/* for single panel page layout */
+.single-panel-container {
 
 }
 
@@ -110,7 +134,7 @@ footer {
 }
 
 
-/* for panel element */
+/* for panel container layout */
 .panel-title-block {
   height: var(--panel-title-height);
 
@@ -121,4 +145,84 @@ footer {
   margin-left: var(--panel-title-block-margin);
   margin-right: var(--panel-title-block-margin);
   margin-bottom: var(--panel-title-block-margin);
+}
+
+.panel-content-block-full {
+  height: 100%;
+
+  margin-left: var(--panel-content-block-margin);
+  margin-right: var(--panel-content-block-margin);
+}
+
+.panel-content-block-with-title {
+  height: calc(100% - var(--panel-title-height) - var(--panel-title-block-margin));
+
+  margin-left: var(--panel-content-block-margin);
+  margin-right: var(--panel-content-block-margin);
+}
+
+.panel-content-block-with-title-button-1 {
+  height: calc(100% - var(--panel-title-height) - var(--panel-title-block-margin)*2 - var(--button-block-height));
+
+  margin-left: var(--panel-content-block-margin);
+  margin-right: var(--panel-content-block-margin);
+  margin-bottom: var(--panel-content-block-margin);
+}
+
+.panel-button-block-1 {
+  height: var(--button-block-height);
+
+  margin-left: var(--button-block-margin);
+  margin-right: var(--button-block-margin);
+}
+
+
+/* for panel element */
+/* style input box */
+.form-control {
+  border-color: var(--input-box-border-color);
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: var(--input-box-border-color);
+}
+
+/* style accordion */
+.accordion-button:not(.collapsed) {
+  background: var(--accordion-header-background-color);
+  color: var(--accordion-header-text-color);
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(0%);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* style check */
+.form-check-input {
+  border-color: var(--check-background-color);
+}
+
+.form-check-input:checked {
+  background-color: var(--check-background-color);
+  border-color: var(--check-border-color);
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: var(--check-border-color);
+}
+
+/* style select */
+.form-select {
+  border-color: var(--select-border-color);
+}
+
+.form-select:focus {
+  box-shadow: none;
+  border-color: var(--select-border-color);
 }
