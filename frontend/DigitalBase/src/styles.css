@@ -8,6 +8,26 @@
   /* home page style */
   --app-block-dark-color: #495057;
   --app-block-light-color: #dae0e5;
+
+  /* panel style */
+  --panel-color: #8f8f8f;
+
+  --panel-container-border-style: solid;
+  --panel-container-border-width: 10px;
+  --panel-container-border-color: var(--panel-color);
+  --panel-container-border-radius: 16px;
+
+  --panel-container-padding: 10px;
+
+  --panel-title-height: 66px;
+
+  --panel-title-border-style: solid;
+  --panel-title-border-width: 6px;
+  --panel-title-border-color: var(--panel-color);
+
+  --panel-title-block-margin: 10px;
+
+  --panel-content-block-margin: 10px;
 }
 
 
@@ -70,4 +90,35 @@ footer {
   font-weight: bold;
   font-size: 22px;
   text-align:center;
+}
+
+
+/* for panel page layout */
+.panel-page-container {
+
+}
+
+
+/* for two panel page layout */
+.half-panel-container {
+  border-style: var(--panel-container-border-style);
+  border-width: var(--panel-container-border-width);
+  border-color: var(--panel-container-border-color);
+  border-radius: var(--panel-container-border-radius);
+
+  padding: var(--panel-container-padding);
+}
+
+
+/* for panel element */
+.panel-title-block {
+  height: var(--panel-title-height);
+
+  border-bottom: var(--panel-title-border-style);
+  border-width: var(--panel-title-border-width);
+  border-color: var(--panel-title-border-color);
+  
+  margin-left: var(--panel-title-block-margin);
+  margin-right: var(--panel-title-block-margin);
+  margin-bottom: var(--panel-title-block-margin);
 }
