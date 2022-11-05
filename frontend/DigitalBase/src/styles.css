@@ -4,7 +4,12 @@
   --header-height: 60px;
   --footer-height: 60px;
   --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+  /* home page style */
+  --app-block-dark-color: #495057;
+  --app-block-light-color: #dae0e5;
 }
+
 
 
 /* for base page layout */
@@ -18,4 +23,51 @@ main {
 
 footer {
   height: var(--footer-height);
+}
+
+
+/* for home page */
+.index-page-container {
+  padding: 180px 180px 0px 180px;
+}
+
+.app-block-link {
+  display: block;
+
+  margin: 50px;
+
+  text-decoration: none;
+}
+
+.app-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 180px;
+  height: 180px;
+  border-radius: 6px;
+
+  background-color: var(--app-block-light-color);
+  color: var(--app-block-dark-color);
+
+  box-shadow: 1.5px 1.5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.app-block:hover {
+  background-color: var(--app-block-dark-color);
+  color: var(--app-block-light-color);
+  transition: 0.3s;
+}
+
+.app-block-text {
+  display: block;
+  line-height: 150%;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-weight: bold;
+  font-size: 22px;
+  text-align:center;
 }

@@ -1,1 +1,13 @@
-<p>home works!</p>
+<div class="index-page-container d-flex">
+  <a routerLink="/{{ app }}"
+     class="app-block-link"
+     *ngFor="let app of apps">
+    <div class="app-block">
+      <div class="app-block-text">
+        {{ app | titlecase }}
+        <br>
+        Base
+      </div>
+    </div>
+  </a>
+</div>
