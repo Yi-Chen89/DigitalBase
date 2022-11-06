@@ -14,6 +14,7 @@ export class CalcComponent implements OnInit {
 
   inputForm: FormGroup;
 
+  codes = ['AISC 360-05', 'AISC 360-10', 'AISC 360-16'];
   tension_check: boolean;
   compression_check: boolean;
   flexure_check: boolean;
@@ -31,8 +32,6 @@ export class CalcComponent implements OnInit {
 
   A: number;
   F_y: number;
-  P_n: number; 
-  phi_P_n: number;
 
   tensionStrength: number;
   compressionStrength: number;
@@ -46,6 +45,7 @@ export class CalcComponent implements OnInit {
   ngOnInit(): void {
     this.inputForm = new FormGroup({
       'checks': new FormGroup({
+        'code': new FormControl(null, Validators.required),
         'tensionCheck': new FormControl(true),
         'compressionCheck': new FormControl(true),
         'flexureCheck': new FormControl(true),
@@ -56,7 +56,7 @@ export class CalcComponent implements OnInit {
       'section': new FormGroup({
         'sectionSize': new FormControl(null, Validators.required),
         'steelGrade': new FormControl(null, Validators.required),
-        'length': new FormControl(null),
+        'length': new FormControl(0, Validators.required),
       }),
 
       'forces': new FormArray([
@@ -216,7 +216,5 @@ export class CalcComponent implements OnInit {
 
     this.A = null;
     this.F_y = null;
-    this.P_n = null;
-    this.phi_P_n = null;
   }
 }

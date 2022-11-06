@@ -38,7 +38,19 @@
                   data-bs-parent="inputs"
                   formGroupName="checks">
                   <div class="accordion-body">
-                    <div class="row">
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <label for="code_field" class="form-label">Code Version</label>
+                        <select
+                          class="form-select"
+                          id="code_field"
+                          formControlName="code">
+                          <option [value]="null" disabled>Select code</option>
+                          <option
+                            *ngFor="let code of codes"
+                            [value]="code">{{ code }}</option>
+                        </select>
+                      </div>
                       <div class="col-12">
                         <div class="form-check">
                           <input
