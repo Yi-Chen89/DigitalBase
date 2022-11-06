@@ -338,7 +338,9 @@
   </div>
 
   <div class="col-6 pt-3 pb-3 ps-3 pe-2 h-100">
-    <div class="half-panel-container h-100">
+    <div
+      class="half-panel-container h-100"
+      *ngIf="outputMode === 'result'">
 
       <!-- need to put this section elsewhere to reuse the left/right panel frame -->
       <!-- start here -->
@@ -562,6 +564,53 @@
             class="btn btn-dark fs-5 col-12 h-100"
             type="button"
             disabled>print</button>
+        </div>
+      </div>
+      <!-- end here -->
+
+    </div>
+
+    <div
+      class="half-panel-container h-100"
+      *ngIf="outputMode === 'instruction'">
+
+      <!-- need to put this section elsewhere to reuse the left/right panel frame -->
+      <!-- start here -->
+      <div class="panel-title-block row">
+        <div class="col">
+          <p class="fs-2 fw-semibold">Instruction</p>
+        </div>
+      </div>
+
+      <div class="panel-content-block-with-title row overflow-auto">
+        <div class="accordion accordion-flush" id="instructions">
+          <div
+            class="accordion-item">
+            <h2 class="accordion-header" id="instructionsHeadingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#instructionsCollapseOne"
+                aria-expanded="true"
+                aria-controls="instructionsCollapseOne">
+                <span class="fs-5 fw-semibold">xxx</span>
+              </button>
+            </h2>
+            <div
+              id="instructionsCollapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="instructionsHeadingOne"
+              data-bs-parent="instructions">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="fs-4">Some instructions about the input panel...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- end here -->

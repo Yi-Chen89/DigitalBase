@@ -38,6 +38,8 @@ export class CalcComponent implements OnInit {
   flexureStrength: number;
   shearStrength: number;
   torsionStrength: number;
+  
+  outputMode: string = 'instruction';
 
 
   constructor(private sectionService: SectionService) { }
@@ -144,6 +146,8 @@ export class CalcComponent implements OnInit {
   }
 
   onSubmit() {
+    this.outputMode = 'result';
+
     this.tension_check = this.inputForm.get('checks.tensionCheck').value;
     this.compression_check = this.inputForm.get('checks.compressionCheck').value;
     this.flexure_check = this.inputForm.get('checks.flexureCheck').value;
@@ -207,6 +211,9 @@ export class CalcComponent implements OnInit {
 
   onClearForm() {
     this.inputForm.patchValue({
+      'checks': {
+        'code': null,
+      },
       'section': {
         'sectionSize': null,
         'steelGrade': null,
@@ -216,5 +223,7 @@ export class CalcComponent implements OnInit {
 
     this.A = null;
     this.F_y = null;
+
+    this.outputMode = 'instruction';
   }
 }
