@@ -6,7 +6,7 @@ from calc.models import SteelGrade, SteelSection
 from .serializers import SteelTypeSerializer, AllSteelGradesSerializer, SteelGradeSerializer, SteelSectionTypeSerializer, AllSteelSectionsSerializer, SteelSectionSerializer
 
 from utils.steel_calcs import tension_yield, compression_FB_nonslender, flexure_yielding, shear_web_no_tensionfield
-
+from utils.arup_compute import arup_compute_tension_yielding
 
 
 @api_view(['GET'])
@@ -66,7 +66,17 @@ def steelCalc(request):
     }
 
     if tensionCheck:
-        result['tension'] = tension_yield(F_y=F_y, A_g=A_g)
+        # result['tension'] = tension_yield(F_y=F_y, A_g=A_g)
+        P_n, html_script, html_style, html = arup_compute_tension_yielding(F_y=F_y, A_g=A_g)
+
+        print(P_n)
+        # print(html_script)
+        # print(html_style)
+        print(html)
+
+        # result['tension'] = response['P_nyld']
+        result['tension'] = html_style + html
+
     
     if compressionCheck:
         E = SteelGrade.objects.filter(id=steelGradeId).values_list('E', flat=True)[0]
