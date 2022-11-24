@@ -6,7 +6,7 @@ from calc.models import SteelGrade, SteelSection
 from .serializers import SteelTypeSerializer, AllSteelGradesSerializer, SteelGradeSerializer, SteelSectionTypeSerializer, AllSteelSectionsSerializer, SteelSectionSerializer
 
 from utils.steel_calcs import tension_yield, compression_FB_nonslender, flexure_yielding, shear_web_no_tensionfield
-from utils.arup_compute import arup_compute_tension_yielding
+from utils.arup_compute import arup_compute_tension_yielding, arup_compute_flexure_strength
 
 
 @api_view(['GET'])
@@ -57,45 +57,86 @@ def steelCalc(request):
 
     A_g = float(SteelSection.objects.filter(id=steelSectionId).values_list('A', flat=True)[0])
 
-    result = {
-        'tension': None,
-        'compression': None,
-        'flexure': None,
-        'shear': None,
-        'torsion': None,
+    response = {
+        'material': {
+            'F_y': F_y,
+            'F_u': F_u,
+            'E': None,
+        },
+        'property': {
+            'A_g': A_g,
+            'd': None,
+            'b_f': None,
+            't_w': None,
+            't_f': None,
+            'k_des': None,
+            'I_x': None,
+            'Z_x': None,
+            'S_x': None,
+            'r_x': None,
+            'I_y': None,
+            'Z_y': None,
+            'S_y': None,
+            'r_y': None,
+            'J': None,
+            'C_w': None,
+            'h_o': None,
+        },
+        'result': {
+            'tension': None,
+            'tension_ac': None,
+            'compression': None,
+            'flexure': None,
+            'flexure_ac': None,
+            'shear': None,
+            'torsion': None,
+        },
     }
 
+
     if tensionCheck:
-        # result['tension'] = tension_yield(F_y=F_y, A_g=A_g)
-        P_n, html_script, html_style, html = arup_compute_tension_yielding(F_y=F_y, A_g=A_g)
+        response['result']['tension'] = tension_yield(F_y=F_y, A_g=A_g)
 
-        print(P_n)
-        # print(html_script)
-        # print(html_style)
-        print(html)
-
-        # result['tension'] = response['P_nyld']
-        result['tension'] = html_style + html
+        P_n, html_style, html = arup_compute_tension_yielding(F_y=F_y, A_g=A_g)
+        response['result']['tension_ac'] = html
 
     
     if compressionCheck:
         E = SteelGrade.objects.filter(id=steelGradeId).values_list('E', flat=True)[0]
         r = float(SteelSection.objects.filter(id=steelSectionId).values_list('r_y', flat=True)[0])
         L_c = length * 12
-        result['compression'] = compression_FB_nonslender(E=E, F_y=F_y, A_g=A_g, r=r, L_c=L_c)
+        response['result']['compression'] = compression_FB_nonslender(E=E, F_y=F_y, A_g=A_g, r=r, L_c=L_c)
+
 
     if flexureCheck:
         Z_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('Z_x', flat=True)[0])
-        result['flexure'] = flexure_yielding(F_y=F_y, Z_x=Z_x) / 12
+        response['result']['flexure'] = flexure_yielding(F_y=F_y, Z_x=Z_x) / 12
+
+        r_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('r_y', flat=True)[0])
+        S_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('S_x', flat=True)[0])
+        J = float(SteelSection.objects.filter(id=steelSectionId).values_list('J', flat=True)[0])
+        h_o = float(SteelSection.objects.filter(id=steelSectionId).values_list('h_o', flat=True)[0])
+        I_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_y', flat=True)[0])
+        I_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_x', flat=True)[0])
+        b_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('b_f', flat=True)[0])
+        t_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_f', flat=True)[0])
+        k_des = float(SteelSection.objects.filter(id=steelSectionId).values_list('k_des', flat=True)[0])
+        d = float(SteelSection.objects.filter(id=steelSectionId).values_list('d', flat=True)[0])
+        t_w = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_w', flat=True)[0])
+
+        M_c, html_style, html = arup_compute_flexure_strength(F_y=F_y, Z_x=Z_x, r_y=r_y, L_b=L_c, S_x=S_x, J=J, h_o=h_o, I_y=I_y, I_x=I_x, b_f=b_f, t_f=t_f, k_des=k_des, d=d, t_w=t_w)
+        response['result']['flexure_ac'] = html
+
     
     if shearCheck:
         d = float(SteelSection.objects.filter(id=steelSectionId).values_list('d', flat=True)[0])
         t_w = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_w', flat=True)[0])
-        result['shear'] = shear_web_no_tensionfield(F_y=F_y, d=d, t_w=t_w)
+        response['result']['shear'] = shear_web_no_tensionfield(F_y=F_y, d=d, t_w=t_w)
+
 
     if torsionCheck:
         phi_T = 0.9
-        result['torsion'] = 1
+        response['result']['torsion'] = 1
 
 
-    return Response(result)
+    return Response(response)
