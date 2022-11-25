@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ProjectComponent } from './project/project.component';
 import { CalcComponent } from './calc/calc.component';
+import { CalclistComponent } from './calc/calclist/calclist.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CalcComponent } from './calc/calc.component';
     FooterComponent,
     HomeComponent,
     ProjectComponent,
-    CalcComponent
+    CalcComponent,
+    CalclistComponent
   ],
   imports: [
     BrowserModule,
