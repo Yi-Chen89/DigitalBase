@@ -354,7 +354,7 @@
         <div class="accordion accordion-flush" id="results">
           <div
             class="accordion-item"
-            *ngIf="tensionStrength">
+            *ngIf="true">
             <h2 class="accordion-header" id="resultsHeadingOne">
               <button
                 class="accordion-button"
@@ -375,7 +375,7 @@
                 <div class="row">
                   <div class="col-12">
                     <p class="fs-4">F_y = {{ F_y }} ksi</p>
-                    <p class="fs-4">A = {{ A }} in2</p>
+                    <p class="fs-4">A = {{ A_g }} in2</p>
                   </div>
                 </div>
               </div>
@@ -384,7 +384,7 @@
 
           <div
             class="accordion-item"
-            *ngIf="tensionStrength">
+            *ngIf="true">
             <h2 class="accordion-header" id="resultsHeadingTwo">
               <button
                 class="accordion-button"
@@ -434,6 +434,8 @@
                 <div class="row">
                   <div class="col-12">
                     <p class="fs-4">Tensile Strength: {{ tensionStrength | number:'1.1-1' }} k</p>
+                    <p class="fs-4" *ngIf="tensionStrengthAC">Tensile Strength Calc Report from ArupCompute</p>
+                    <div *ngIf="tensionStrengthAC" [mathjax]="tensionStrengthAC"></div>
                   </div>
                 </div>
               </div>
@@ -492,6 +494,8 @@
                 <div class="row">
                   <div class="col-12">
                     <p class="fs-4">Flexural Strength: {{ flexureStrength | number:'1.1-1' }} k-ft</p>
+                    <p class="fs-4" *ngIf="flexureStrengthAC">Flexural Strength Calc Report from ArupCompute</p>
+                    <div *ngIf="flexureStrengthAC" [mathjax]="flexureStrengthAC"></div>
                   </div>
                 </div>
               </div>

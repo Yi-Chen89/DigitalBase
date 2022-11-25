@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MathjaxModule } from 'mathjax-angular';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,7 +27,8 @@ import { CalcComponent } from './calc/calc.component';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MathjaxModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

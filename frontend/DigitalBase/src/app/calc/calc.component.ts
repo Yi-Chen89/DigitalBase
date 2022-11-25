@@ -30,14 +30,20 @@ export class CalcComponent implements OnInit {
 
   load_cases = ['D', 'L', 'Lr'];
 
-  A: number;
   F_y: number;
+  F_u: number;
+  E: number;
+
+  A_g: number;
 
   tensionStrength: number;
   compressionStrength: number;
   flexureStrength: number;
   shearStrength: number;
   torsionStrength: number;
+
+  tensionStrengthAC: string;
+  flexureStrengthAC: string;
   
   outputMode: string = 'instruction';
 
@@ -166,7 +172,7 @@ export class CalcComponent implements OnInit {
     this.sectionService.fetchSteelSection(steel_section_id)
       .subscribe(
         section => {
-          this.A = section['A'];
+          this.A_g = section['A'];
         }
       );
     
@@ -198,13 +204,23 @@ export class CalcComponent implements OnInit {
 
     this.sectionService.postSteelCalcData(inputData)
       .subscribe(
-        result => {
-          this.tensionStrength = result['tension'];
-          this.compressionStrength = result['compression'];
-          this.flexureStrength = result['flexure'];
-          this.shearStrength = result['shear'];
-          this.torsionStrength = result['torsion'];
-          console.log(result);
+        response => {
+          this.F_y = response['material']['F_y'];
+          this.F_u = response['material']['F_u'];
+          this.E = response['material']['E'];
+
+          this.A_g = response['property']['A_g'];
+
+          this.tensionStrength = response['result']['tension'];
+          this.compressionStrength = response['result']['compression'];
+          this.flexureStrength = response['result']['flexure'];
+          this.shearStrength = response['result']['shear'];
+          this.torsionStrength = response['result']['torsion'];
+
+          this.tensionStrengthAC = response['result']['tension_ac'];
+          this.flexureStrengthAC = response['result']['flexure_ac'];
+
+          console.log(response);
         }
       );
   }
@@ -221,8 +237,7 @@ export class CalcComponent implements OnInit {
       },
     });
 
-    this.A = null;
-    this.F_y = null;
+    this.A_g = null;
 
     this.outputMode = 'instruction';
   }
