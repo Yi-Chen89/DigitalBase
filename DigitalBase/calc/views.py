@@ -97,8 +97,8 @@ def steelCalc(request):
     if tensionCheck:
         response['result']['tension'] = tension_yield(F_y=F_y, A_g=A_g)
 
-        P_n, html_style, html = arup_compute_tension_yielding(F_y=F_y, A_g=A_g)
-        response['result']['tension_ac'] = html
+        # P_n, html_style, html = arup_compute_tension_yielding(F_y=F_y, A_g=A_g)
+        # response['result']['tension_ac'] = html
 
     
     if compressionCheck:
@@ -112,20 +112,21 @@ def steelCalc(request):
         Z_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('Z_x', flat=True)[0])
         response['result']['flexure'] = flexure_yielding(F_y=F_y, Z_x=Z_x) / 12
 
-        r_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('r_y', flat=True)[0])
-        S_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('S_x', flat=True)[0])
-        J = float(SteelSection.objects.filter(id=steelSectionId).values_list('J', flat=True)[0])
-        h_o = float(SteelSection.objects.filter(id=steelSectionId).values_list('h_o', flat=True)[0])
-        I_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_y', flat=True)[0])
-        I_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_x', flat=True)[0])
-        b_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('b_f', flat=True)[0])
-        t_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_f', flat=True)[0])
-        k_des = float(SteelSection.objects.filter(id=steelSectionId).values_list('k_des', flat=True)[0])
-        d = float(SteelSection.objects.filter(id=steelSectionId).values_list('d', flat=True)[0])
-        t_w = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_w', flat=True)[0])
+        # r_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('r_y', flat=True)[0])
+        # S_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('S_x', flat=True)[0])
+        # J = float(SteelSection.objects.filter(id=steelSectionId).values_list('J', flat=True)[0])
+        # h_o = float(SteelSection.objects.filter(id=steelSectionId).values_list('h_o', flat=True)[0])
+        # I_y = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_y', flat=True)[0])
+        # I_x = float(SteelSection.objects.filter(id=steelSectionId).values_list('I_x', flat=True)[0])
+        # b_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('b_f', flat=True)[0])
+        # t_f = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_f', flat=True)[0])
+        # k_des = float(SteelSection.objects.filter(id=steelSectionId).values_list('k_des', flat=True)[0])
+        # d = float(SteelSection.objects.filter(id=steelSectionId).values_list('d', flat=True)[0])
+        # t_w = float(SteelSection.objects.filter(id=steelSectionId).values_list('t_w', flat=True)[0])
+        # L_b = length
 
-        M_c, html_style, html = arup_compute_flexure_strength(F_y=F_y, Z_x=Z_x, r_y=r_y, L_b=L_c, S_x=S_x, J=J, h_o=h_o, I_y=I_y, I_x=I_x, b_f=b_f, t_f=t_f, k_des=k_des, d=d, t_w=t_w)
-        response['result']['flexure_ac'] = html
+        # M_c, html_style, html = arup_compute_flexure_strength(F_y=F_y, Z_x=Z_x, r_y=r_y, L_b=L_b, S_x=S_x, J=J, h_o=h_o, I_y=I_y, I_x=I_x, b_f=b_f, t_f=t_f, k_des=k_des, d=d, t_w=t_w)
+        # response['result']['flexure_ac'] = html
 
     
     if shearCheck:
