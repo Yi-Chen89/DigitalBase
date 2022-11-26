@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalclistComponent } from './calclist.component';
+import { CalcListComponent } from './calc-list.component';
 
-describe('CalclistComponent', () => {
-  let component: CalclistComponent;
-  let fixture: ComponentFixture<CalclistComponent>;
+describe('CalcListComponent', () => {
+  let component: CalcListComponent;
+  let fixture: ComponentFixture<CalcListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CalclistComponent ]
+      declarations: [ CalcListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CalclistComponent);
+    fixture = TestBed.createComponent(CalcListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

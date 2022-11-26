@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calclist',
-  templateUrl: './calclist.component.html',
-  styleUrls: ['./calclist.component.css']
+  selector: 'app-calc-list',
+  templateUrl: './calc-list.component.html',
+  styleUrls: ['./calc-list.component.css']
 })
-export class CalclistComponent implements OnInit {
+export class CalcListComponent implements OnInit {
 
   loadCalcs = {
     'DL Estimate': null,
