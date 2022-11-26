@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ProjectComponent } from './project/project.component';
 import { CalcComponent } from './calc/calc.component';
 import { CalclistComponent } from './calc/calclist/calclist.component';
+import { SteelCalcComponent } from './calc/steel-calc/steel-calc.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CalclistComponent } from './calc/calclist/calclist.component';
     HomeComponent,
     ProjectComponent,
     CalcComponent,
-    CalclistComponent
+    CalclistComponent,
+    SteelCalcComponent
   ],
   imports: [
     BrowserModule,
