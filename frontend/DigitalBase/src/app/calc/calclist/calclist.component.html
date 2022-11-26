@@ -1,1 +1,133 @@
-<p>calclist works!</p>
+<div class="panel-page-container row h-100">
+
+  <div class="col-6 pt-3 pb-3 ps-3 pe-2 h-100">
+    <div class="half-panel-container h-100">
+  
+      <!-- need to put this section elsewhere to reuse the left/right panel frame -->
+      <!-- start here -->
+      <div class="panel-title-block row">
+        <div class="col">
+          <p class="fs-2 fw-semibold">Menu</p>
+        </div>
+      </div>
+  
+      <div class="panel-content-block-with-title row overflow-auto">
+        <div class="col">
+          <div class="accordion accordion-flush" id="menu">
+            <div
+              class="accordion-item">
+              <h2 class="accordion-header" id="menuHeadingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menuCollapseOne"
+                  aria-expanded="true"
+                  aria-controls="menuCollapseOne">
+                  <span class="fs-5 fw-semibold">Load</span>
+                </button>
+              </h2>
+              <div
+                id="menuCollapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="menuHeadingOne"
+                data-bs-parent="menu">
+                <div class="accordion-body">
+                  <div class="row g-3">
+                    <div
+                      class="menu-button col-12"
+                      *ngFor="let loadCalc of loadCalcs | keyvalue">
+                      <div class="row w-100">
+                        <div class="col-11" routerLink="{{ loadCalc.value }}" style="cursor: pointer">{{ loadCalc.key }}</div>
+                        <div class="col-1 fw-bold text-end" style="cursor: pointer">?</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div
+              class="accordion-item">
+              <h2 class="accordion-header" id="menuHeadingTwo">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menuCollapseTwo"
+                  aria-expanded="true"
+                  aria-controls="menuCollapseTwo">
+                  <span class="fs-5 fw-semibold">Steel</span>
+                </button>
+              </h2>
+              <div
+                id="menuCollapseTwo"
+                class="accordion-collapse collapse show"
+                aria-labelledby="menuHeadingTwo"
+                data-bs-parent="menu">
+                <div class="accordion-body">
+                  <div class="row g-3">
+                    <div
+                      class="menu-button col-12"
+                      *ngFor="let steelCalc of steelCalcs | keyvalue">
+                      <div class="row w-100">
+                        <div class="col-11" routerLink="{{ steelCalc.value }}" style="cursor: pointer">{{ steelCalc.key }}</div>
+                        <div class="col-1 fw-bold text-end" style="cursor: pointer">?</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="accordion-item">
+              <h2 class="accordion-header" id="menuHeadingThree">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menuCollapseThree"
+                  aria-expanded="true"
+                  aria-controls="menuCollapseThree">
+                  <span class="fs-5 fw-semibold">Concrete</span>
+                </button>
+              </h2>
+              <div
+                id="menuCollapseThree"
+                class="accordion-collapse collapse show"
+                aria-labelledby="menuHeadingThree"
+                data-bs-parent="menu">
+                <div class="accordion-body">
+                  <div class="row g-3">
+                    <div
+                      class="menu-button col-12"
+                      *ngFor="let concreteCalc of concreteCalcs | keyvalue">
+                      <div class="row w-100">
+                        <div class="col-11" routerLink="{{ concreteCalc.value }}" style="cursor: pointer">{{ concreteCalc.key }}</div>
+                        <div class="col-1 fw-bold text-end" style="cursor: pointer">?</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end here -->
+  
+    </div>
+  </div>
+  
+  <div class="col-6 pt-3 pb-3 ps-3 pe-2 h-100">
+    <div class="half-panel-container h-100">
+      <div class="panel-title-block row">
+        <div class="col">
+          <p class="fs-2 fw-semibold">Instruction</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

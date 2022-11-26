@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   // apps data should come from the server
   apps = [
     'project',
-    'calc'
+    'calc',
   ];
 
   constructor() { }

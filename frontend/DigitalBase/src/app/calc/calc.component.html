@@ -374,8 +374,8 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">F_y = {{ F_y }} ksi</p>
-                    <p class="fs-4">A = {{ A_g }} in2</p>
+                    <p class="fs-5">F_y = {{ F_y }} ksi</p>
+                    <p class="fs-5">A = {{ A_g }} in2</p>
                   </div>
                 </div>
               </div>
@@ -404,7 +404,7 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Force: xx k</p>
+                    <p class="fs-5">Force: xx k</p>
                   </div>
                 </div>
               </div>
@@ -433,8 +433,8 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Tensile Strength: {{ tensionStrength | number:'1.1-1' }} k</p>
-                    <p class="fs-4" *ngIf="tensionStrengthAC">Tensile Strength Calc Report from ArupCompute</p>
+                    <p class="fs-5">Tensile Strength: {{ tensionStrength | number:'1.1-1' }} k</p>
+                    <p class="fs-5" *ngIf="tensionStrengthAC">Tensile Strength Calc Report from ArupCompute</p>
                     <div *ngIf="tensionStrengthAC" [mathjax]="tensionStrengthAC"></div>
                   </div>
                 </div>
@@ -464,7 +464,7 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Compressive Strength: {{ compressionStrength | number:'1.1-1' }} k</p>
+                    <p class="fs-5">Compressive Strength: {{ compressionStrength | number:'1.1-1' }} k</p>
                   </div>
                 </div>
               </div>
@@ -493,8 +493,8 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Flexural Strength: {{ flexureStrength | number:'1.1-1' }} k-ft</p>
-                    <p class="fs-4" *ngIf="flexureStrengthAC">Flexural Strength Calc Report from ArupCompute</p>
+                    <p class="fs-5">Flexural Strength: {{ flexureStrength | number:'1.1-1' }} k-ft</p>
+                    <p class="fs-5" *ngIf="flexureStrengthAC">Flexural Strength Calc Report from ArupCompute</p>
                     <div *ngIf="flexureStrengthAC" [mathjax]="flexureStrengthAC"></div>
                   </div>
                 </div>
@@ -524,7 +524,7 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Shear Strength: {{ shearStrength | number:'1.1-1' }} k</p>
+                    <p class="fs-5">Shear Strength: {{ shearStrength | number:'1.1-1' }} k</p>
                   </div>
                 </div>
               </div>
@@ -553,7 +553,7 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Torsional Strength: {{ torsionStrength | number:'1.1-1' }} k-ft</p>
+                    <p class="fs-5">Torsional Strength: {{ torsionStrength | number:'1.1-1' }} k-ft</p>
                   </div>
                 </div>
               </div>
@@ -598,7 +598,7 @@
                 data-bs-target="#instructionsCollapseOne"
                 aria-expanded="true"
                 aria-controls="instructionsCollapseOne">
-                <span class="fs-5 fw-semibold">xxx</span>
+                <span class="fs-5 fw-semibold">Instruction</span>
               </button>
             </h2>
             <div
@@ -609,7 +609,7 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-12">
-                    <p class="fs-4">Some instructions about the input panel...</p>
+                    <p class="fs-5">Some instructions about the input panel...</p>
                   </div>
                 </div>
               </div>

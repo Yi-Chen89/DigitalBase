@@ -52,6 +52,19 @@
 
   /* select style */
   --select-border-color: var(--panel-color);
+
+  /* menu button style */
+  --menu-button-height: 56px;
+
+  --menu-button-border-style: solid;
+  --menu-button-border-width: 5px;
+  --menu-button-border-color: var(--panel-color);
+  --menu-button-border-radius: 10px;
+
+  --menu-button-text-size: 20px;
+
+  --menu-button-dark-color: var(--panel-color);
+  --menu-button-light-color: #ffffff;
 }
 
 
@@ -228,6 +241,27 @@ footer {
 }
 
 
+/* for menu button */
+.menu-button {
+  display: flex;
+  align-items: center;
+
+  height: var(--menu-button-height);
+
+  border-style: var(--menu-button-border-style);
+  border-width: var(--menu-button-border-width);
+  border-color: var(--menu-button-border-color);
+  border-radius: var(--menu-button-border-radius);
+
+  font-size: var(--menu-button-text-size);
+  font-weight: 500;
+}
+
+.menu-button:hover {
+  background-color: var(--menu-button-dark-color);
+  color: var(--menu-button-light-color);
+  transition: 0.2s;
+}
 
 
 
