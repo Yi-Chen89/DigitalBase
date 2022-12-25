@@ -2,6 +2,72 @@ from django.db import models
 
 
 
+class ASCE7Version(models.Model):
+    name = models.CharField(
+        max_length = 9)
+
+    def __str__(self):
+        return self.name
+
+
+class DesignMethod(models.Model):
+    name = models.CharField(
+        max_length = 4)
+
+    def __str__(self):
+        return self.name
+
+
+class LoadCombination(models.Model):
+    version = models.ForeignKey(
+        ASCE7Version,
+        on_delete = models.CASCADE)
+    method = models.ForeignKey(
+        DesignMethod,
+        on_delete = models.CASCADE)
+    num = models.DecimalField(
+        max_digits = 2,
+        decimal_places = 1)
+    D = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    L = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    T = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    L_r = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    S = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    R = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    W = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    E = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+    E_v = models.DecimalField(
+        max_digits = 4,
+        decimal_places = 3)
+
+    def __str__(self):
+        return self.version.name + ' ' + self.method.name + ' LC' + str(self.num)
+
+
+class AISC360Version(models.Model):
+    name = models.CharField(
+        max_length = 11)
+
+    def __str__(self):
+        return self.name
+
+
 class SteelType(models.Model):
     name = models.CharField(
         max_length = 50)

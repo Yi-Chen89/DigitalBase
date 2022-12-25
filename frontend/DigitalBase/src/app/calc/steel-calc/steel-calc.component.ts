@@ -122,7 +122,7 @@ export class SteelCalcComponent implements OnInit {
                   'section': {
                     'steelGrade': section['type']['preferred_steel']['id'],
                   }
-                })
+                });
               }
             )
           }

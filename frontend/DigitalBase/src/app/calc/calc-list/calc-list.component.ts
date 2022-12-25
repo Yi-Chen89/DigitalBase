@@ -12,6 +12,7 @@ export class CalcListComponent implements OnInit {
     'LL Finder': null,
     'Seismic Load': null,
     'Wind Load': null,
+    'Load Combination': null,
   };
   steelCalcs = {
     'Section Finder': null,
@@ -27,4 +28,8 @@ export class CalcListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  appLink(name) {
+    let link = this.steelCalcs[name]
+    return link
+  }
 }

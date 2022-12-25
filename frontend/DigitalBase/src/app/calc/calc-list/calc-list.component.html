@@ -71,7 +71,8 @@
                       class="menu-button col-12"
                       *ngFor="let steelCalc of steelCalcs | keyvalue">
                       <div class="row w-100">
-                        <div class="col-11" routerLink="{{ steelCalc.value }}" style="cursor: pointer">{{ steelCalc.key }}</div>
+                        <!-- <div class="col-11" routerLink="{{ steelCalc.value }}" style="cursor: pointer">{{ steelCalc.key }}</div> -->
+                        <div class="col-11" routerLink="{{ appLink(steelCalc.key) }}" style="cursor: pointer">{{ steelCalc.key }}</div>
                         <div class="col-1 fw-bold text-end" style="cursor: pointer">?</div>
                       </div>
                     </div>
