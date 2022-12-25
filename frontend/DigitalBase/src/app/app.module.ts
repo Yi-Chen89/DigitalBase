@@ -14,6 +14,7 @@ import { ProjectComponent } from './project/project.component';
 import { CalcComponent } from './calc/calc.component';
 import { CalcListComponent } from './calc/calc-list/calc-list.component';
 import { SteelCalcComponent } from './calc/steel-calc/steel-calc.component';
+import { LoadCombinationComponent } from './calc/load-combination/load-combination.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SteelCalcComponent } from './calc/steel-calc/steel-calc.component';
     ProjectComponent,
     CalcComponent,
     CalcListComponent,
-    SteelCalcComponent
+    SteelCalcComponent,
+    LoadCombinationComponent
   ],
   imports: [
     BrowserModule,
