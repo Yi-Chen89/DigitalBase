@@ -4,10 +4,13 @@ from . import views
 
 app_name = 'calc'
 urlpatterns = [
+    path('asce7versions/', views.getAllASCE7Versions),
+    path('loadcombination/', views.loadCombination),
+
     path('steelgrades/', views.getAllSteelGrades),
     path('steelgrade/<int:id>', views.getSteelGrade),
     path('steelsections/', views.getAllSteelSections),
     path('steelsection/<int:id>', views.getSteelSection),
 
-    path('steelcalc', views.steelCalc)
+    path('steelcalc/', views.steelCalc)
 ]

@@ -1,7 +1,13 @@
 from rest_framework import serializers
 
-from calc.models import SteelType, SteelGrade, SteelSectionType, SteelSection
+from calc.models import ASCE7Version, SteelType, SteelGrade, SteelSectionType, SteelSection
 
+
+
+class AllASCE7VersionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ASCE7Version
+        fields = '__all__'
 
 
 class SteelTypeSerializer(serializers.ModelSerializer):

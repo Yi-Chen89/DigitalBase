@@ -12,7 +12,7 @@ export class CalcListComponent implements OnInit {
     'LL Finder': null,
     'Seismic Load': null,
     'Wind Load': null,
-    'Load Combination': null,
+    'Load Combination': '/loadcombination',
   };
   steelCalcs = {
     'Section Finder': null,

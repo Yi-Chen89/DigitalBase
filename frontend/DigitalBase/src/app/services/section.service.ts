@@ -65,7 +65,7 @@ export class SectionService {
   postSteelCalcData(data) {
     return this.http
       .post(
-        baseUrl + '/steelcalc',
+        baseUrl + '/steelcalc/',
         data,
       );
   }
