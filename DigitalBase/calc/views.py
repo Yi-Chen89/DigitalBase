@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 
-from calc.models import ASCE7Version, LoadCombination, SteelGrade, SteelSection
+from calc.models import ASCE7Version, DesignMethod, LoadCombination, SteelGrade, SteelSection
 from .serializers import AllASCE7VersionsSerializer, SteelTypeSerializer, AllSteelGradesSerializer, SteelGradeSerializer, SteelSectionTypeSerializer, AllSteelSectionsSerializer, SteelSectionSerializer
 
 from utils.steel_calcs import tension_yield, compression_FB_nonslender, flexure_yielding, shear_web_no_tensionfield
@@ -20,40 +20,54 @@ def getAllASCE7Versions(request):
 @api_view(['POST'])
 def loadCombination(request):
     inputData = JSONParser().parse(request)
+
+    code_id = inputData['code']['code']
+    LRFD_check = inputData['code']['LRFD']
+    ASD_check = inputData['code']['ASD']
+
     load_cases = []
-    for key, value in inputData.items():
+    for key, value in inputData['loadCase'].items():
         if value:
             load_cases.append(key)
 
-    LRFD_list = []
-    ASD_list = []
-    for load_case in load_cases:
-        LRFD_list.append(list(LoadCombination.objects.filter(method=1).values_list(load_case, flat=True)))
-        ASD_list.append(list(LoadCombination.objects.filter(method=2).values_list(load_case, flat=True)))
+    if LRFD_check:
+        LRFD_list = []
+        LRFD_id = DesignMethod.objects.filter(name='LRFD').values_list('id', flat=True)[0]
+        for load_case in load_cases:
+            LRFD_list.append(list(LoadCombination.objects.filter(version=code_id, method=LRFD_id).values_list(load_case, flat=True)))
 
-    LRFD_list_flip = []
-    LRFD_list_length = len(LRFD_list[0])
-    for i in range(LRFD_list_length):
-        temp = []
-        for lst in LRFD_list:
-            temp.append(float(lst[i]))
-        LRFD_list_flip.append(temp)
-    LRFD_combination = []
-    for lst in LRFD_list_flip:
-        if lst not in LRFD_combination:
-            LRFD_combination.append(lst)
+        LRFD_list_flip = []
+        LRFD_list_length = len(LRFD_list[0])
+        for i in range(LRFD_list_length):
+            temp = []
+            for lst in LRFD_list:
+                temp.append(float(lst[i]))
+            LRFD_list_flip.append(temp)
 
-    ASD_list_flip = []
-    ASD_list_length = len(ASD_list[0])
-    for i in range(ASD_list_length):
-        temp = []
-        for lst in ASD_list:
-            temp.append(float(lst[i]))
-        ASD_list_flip.append(temp)
-    ASD_combination = []
-    for lst in ASD_list_flip:
-        if lst not in ASD_combination:
-            ASD_combination.append(lst)
+        LRFD_combination = []
+        for lst in LRFD_list_flip:
+            if lst not in LRFD_combination:
+                LRFD_combination.append(lst)
+
+    if ASD_check:
+        ASD_list = []
+        ASD_id = DesignMethod.objects.filter(name='ASD').values_list('id', flat=True)[0]
+        for load_case in load_cases:
+            ASD_list.append(list(LoadCombination.objects.filter(version=code_id, method=ASD_id).values_list(load_case, flat=True)))
+
+        ASD_list_flip = []
+        ASD_list_length = len(ASD_list[0])
+        for i in range(ASD_list_length):
+            temp = []
+            for lst in ASD_list:
+                temp.append(float(lst[i]))
+            ASD_list_flip.append(temp)
+
+        ASD_combination = []
+        for lst in ASD_list_flip:
+            if lst not in ASD_combination:
+                ASD_combination.append(lst)
+
 
     response = {
         'LRFD': {},
@@ -61,24 +75,28 @@ def loadCombination(request):
     }
 
     load_case_num = len(load_cases)
-    LRFD_num = len(LRFD_combination)
-    for i in range(LRFD_num):
-        temp = ''
-        for j in range(load_case_num):
-            if LRFD_combination[i][j] != 0:
-                temp += str(LRFD_combination[i][j])
-                temp += load_cases[j]
-                temp += ' + '
-        response['LRFD'][i+1] = temp[:-3]
-    ASD_num = len(ASD_combination)
-    for i in range(ASD_num):
-        temp = ''
-        for j in range(load_case_num):
-            if ASD_combination[i][j] != 0:
-                temp += str(ASD_combination[i][j])
-                temp += load_cases[j]
-                temp += ' + '
-        response['ASD'][i+1] = temp[:-3]
+
+    if LRFD_check:
+        LRFD_num = len(LRFD_combination)
+        for i in range(LRFD_num):
+            temp = ''
+            for j in range(load_case_num):
+                if LRFD_combination[i][j] != 0:
+                    temp += str(LRFD_combination[i][j])
+                    temp += load_cases[j]
+                    temp += ' + '
+            response['LRFD'][i+1] = temp[:-3]
+
+    if ASD_check:
+        ASD_num = len(ASD_combination)
+        for i in range(ASD_num):
+            temp = ''
+            for j in range(load_case_num):
+                if ASD_combination[i][j] != 0:
+                    temp += str(ASD_combination[i][j])
+                    temp += load_cases[j]
+                    temp += ' + '
+            response['ASD'][i+1] = temp[:-3]
 
     return Response(response)
 

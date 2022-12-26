@@ -356,31 +356,57 @@
     </div>
   
     <div class="col-6 pt-3 pb-3 ps-3 pe-2 h-100">
-      <div class="half-panel-container h-100">
+      <div
+        class="half-panel-container h-100"
+        *ngIf="outputMode === 'result'">
 
         <div class="panel-title-block row">
-            <div class="col">
-              <p class="fs-2 fw-semibold">Output</p>
+          <div class="col">
+            <p class="fs-2 fw-semibold">Result</p>
+          </div>
+        </div>
+
+        <div
+          class="panel-content-block-with-title row overflow-auto"
+          *ngIf="warning">
+          <div class="col-12">
+            <p
+              class="fs-5 fw-semibold"
+              *ngIf="warning_code">{{ warning_code }}</p>
+            <p
+              class="fs-5 fw-semibold"
+              *ngIf="warning_method">{{ warning_method }}</p>
+          </div>
+        </div>
+
+        <div
+          class="panel-content-block-with-title-button-1 row overflow-auto"
+          *ngIf="!warning">
+          <div class="col">
+            <strong>LRFD</strong>
+            <div *ngFor="let LRFD of LRFDCombination | keyvalue">
+              {{ LRFD.value }}
+            </div>
+            <div></div>
+            <strong>ASD</strong>
+            <div *ngFor="let ASD of ASDCombination | keyvalue">
+              {{ ASD.value }}
             </div>
           </div>
-
-
-          <div class="panel-content-block-with-title-button-1 row overflow-auto">
-            <div class="col">
-                <strong>LRFD</strong>
-                <div *ngFor="let LRFD of LRFDCombination | keyvalue">
-                    {{ LRFD.value }}
-                </div>
-                <div></div>
-                <strong>ASD</strong>
-                <div *ngFor="let ASD of ASDCombination | keyvalue">
-                    {{ ASD.value }}
-                </div>
-            </div>
-          </div>
+        </div>
       </div>
 
+      <div
+        class="half-panel-container h-100"
+        *ngIf="outputMode === 'instruction'">
 
+        <div class="panel-title-block row">
+          <div class="col">
+            <p class="fs-2 fw-semibold">Instruction</p>
+          </div>
+        </div>
+
+      </div>
       <!-- <div
         class="half-panel-container h-100"
         *ngIf="outputMode === 'result'"> -->

@@ -20,6 +20,10 @@ export class LoadCombinationComponent implements OnInit {
   LRFDCombination = null;
   ASDCombination = null;
 
+  warning: boolean = false;
+  warning_code: string = null;
+  warning_method: string = null;
+
   outputMode: string = 'instruction';
 
 
@@ -54,22 +58,69 @@ export class LoadCombinationComponent implements OnInit {
       );
     
 
-    this.inputForm.get('loadCase').valueChanges
+    this.inputForm.valueChanges
       .subscribe(
         value => {
-          this.loadCombinationService.postLoadCaseData(value)
-            .subscribe(
-              response => {
-                this.LRFDCombination = response['LRFD']
-                this.ASDCombination = response['ASD']
-              }
-            );
-          console.log(value);
+          this.outputMode = 'result';
+
+          if (!value['code']['code']) {
+
+            this.warning = true;
+            this.warning_code = 'No code selected';
+
+            if (!value['code']['LRFD'] && !value['code']['ASD']) {
+              this.warning_method = 'No design method selected';
+            }
+
+          } else if (!value['code']['LRFD'] && !value['code']['ASD']) {
+
+            this.warning = true;
+            this.warning_code = null;
+            this.warning_method = 'No design method selected';
+
+          } else {
+
+            this.warning = false;
+            this.warning_code = null;
+            this.warning_method = null;
+
+            this.loadCombinationService.postLoadCaseData(value)
+              .subscribe(
+                response => {
+                  this.LRFDCombination = response['LRFD']
+                  this.ASDCombination = response['ASD']
+                }
+              );
+            console.log(value);
+          }
+
         }
       );
+
   }
 
   onSubmit() {}
 
-  onClearForm() {}
+  onClearForm() {
+    
+    this.inputForm.patchValue({
+      'code': {
+        'code': null,
+        'LRFD': true,
+        'ASD': true,
+      },
+      'loadCase': {
+        'D': true,
+        'L': false,
+        'T': false,
+        'L_r': false,
+        'S': false,
+        'R': false,
+        'W': false,
+        'E': false,
+      },
+    });
+
+    this.outputMode = 'instruction';
+  }
 }
