@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CodeService } from 'src/app/services/code.service';
 import { LoadCombinationService } from 'src/app/services/load-combination.service';
@@ -40,6 +40,13 @@ export class LoadCombinationComponent implements OnInit {
 
       'loadCase': new FormGroup({
         'D': new FormControl(true),
+        // 'DSum': new FormControl(true),
+        // 'DCases': new FormArray([
+        //   new FormGroup({
+        //     'name': new FormControl(null, Validators.required),
+        //     'abbr': new FormControl(null, Validators.required),
+        //   })
+        // ]),
         'L': new FormControl(false),
         'T': new FormControl(false),
         'L_r': new FormControl(false),
@@ -89,6 +96,8 @@ export class LoadCombinationComponent implements OnInit {
                 response => {
                   this.LRFDCombination = response['LRFD']
                   this.ASDCombination = response['ASD']
+
+                  console.log(response)
                 }
               );
             console.log(value);
@@ -123,4 +132,16 @@ export class LoadCombinationComponent implements OnInit {
 
     this.outputMode = 'instruction';
   }
+
+
+
+
+
+  // getDCaseControls() {
+  //   return (<FormArray>this.inputForm.get('loadCase').get('DCases')).controls;
+  // }
+
+  // onRemoveForce(index:number) {
+  //   (<FormArray>this.inputForm.get('DCases')).removeAt(index);
+  // }
 }

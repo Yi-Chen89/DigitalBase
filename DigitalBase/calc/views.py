@@ -35,6 +35,7 @@ def loadCombination(request):
         LRFD_id = DesignMethod.objects.filter(name='LRFD').values_list('id', flat=True)[0]
         for load_case in load_cases:
             LRFD_list.append(list(LoadCombination.objects.filter(version=code_id, method=LRFD_id).values_list(load_case, flat=True)))
+        LRFD_list_num = list(LoadCombination.objects.filter(version=code_id, method=LRFD_id).values_list('num', flat=True))
 
         LRFD_list_flip = []
         LRFD_list_length = len(LRFD_list[0])
@@ -44,16 +45,20 @@ def loadCombination(request):
                 temp.append(float(lst[i]))
             LRFD_list_flip.append(temp)
 
+        LRFD_num = []
         LRFD_combination = []
-        for lst in LRFD_list_flip:
-            if lst not in LRFD_combination:
-                LRFD_combination.append(lst)
+        for i in range(len(LRFD_list_num)):
+            if LRFD_list_flip[i] not in LRFD_combination:
+                LRFD_num.append(float(LRFD_list_num[i]))
+                LRFD_combination.append(LRFD_list_flip[i])
+
 
     if ASD_check:
         ASD_list = []
         ASD_id = DesignMethod.objects.filter(name='ASD').values_list('id', flat=True)[0]
         for load_case in load_cases:
             ASD_list.append(list(LoadCombination.objects.filter(version=code_id, method=ASD_id).values_list(load_case, flat=True)))
+        ASD_list_num = list(LoadCombination.objects.filter(version=code_id, method=ASD_id).values_list('num', flat=True))
 
         ASD_list_flip = []
         ASD_list_length = len(ASD_list[0])
@@ -63,10 +68,12 @@ def loadCombination(request):
                 temp.append(float(lst[i]))
             ASD_list_flip.append(temp)
 
+        ASD_num = []
         ASD_combination = []
-        for lst in ASD_list_flip:
-            if lst not in ASD_combination:
-                ASD_combination.append(lst)
+        for i in range(len(ASD_list_num)):
+            if ASD_list_flip[i] not in ASD_combination:
+                ASD_num.append(float(ASD_list_num[i]))
+                ASD_combination.append(ASD_list_flip[i])
 
 
     response = {
@@ -77,26 +84,24 @@ def loadCombination(request):
     load_case_num = len(load_cases)
 
     if LRFD_check:
-        LRFD_num = len(LRFD_combination)
-        for i in range(LRFD_num):
+        for i in range(len(LRFD_num)):
             temp = ''
             for j in range(load_case_num):
                 if LRFD_combination[i][j] != 0:
                     temp += str(LRFD_combination[i][j])
                     temp += load_cases[j]
                     temp += ' + '
-            response['LRFD'][i+1] = temp[:-3]
+            response['LRFD'][LRFD_num[i]] = temp[:-3]
 
     if ASD_check:
-        ASD_num = len(ASD_combination)
-        for i in range(ASD_num):
+        for i in range(len(ASD_num)):
             temp = ''
             for j in range(load_case_num):
                 if ASD_combination[i][j] != 0:
                     temp += str(ASD_combination[i][j])
                     temp += load_cases[j]
                     temp += ' + '
-            response['ASD'][i+1] = temp[:-3]
+            response['ASD'][ASD_num[i]] = temp[:-3]
 
     return Response(response)
 
